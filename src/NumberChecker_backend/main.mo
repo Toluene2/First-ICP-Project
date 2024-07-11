@@ -9,15 +9,15 @@ actor Tokenchecker {
   };
 
   
-  func checkToken(token : Text, boolInput : Bool) : FancyResult {
-    if (token == BTC or token == ICP) {
+  func checkToken(token : Text, boolInput : Text) : FancyResult {
+    if (token == boolInput) {
       return #Ok "The token is valid";
     } else {
       return #Err "The token is invalid";
     };
   };
 
-  public query func useCheckToken(token : Text, boolInput : Bool) : async Text {
+  public query func CheckToken(token : Text, boolInput : Text) : async Text {
     let operationResult = checkToken(token, boolInput);
     switch (operationResult) {
       case (#Ok successMessage) {
