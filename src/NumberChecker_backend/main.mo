@@ -2,23 +2,23 @@ import Text "mo:base/Text";
 import Nat "mo:base/Nat";
 import Bool "mo:base/Bool";
 
-actor NumberChecker {
+actor Tokenchecker {
   type FancyResult = {
     #Ok : Text;
     #Err : Text;
   };
 
   
-  func checkInput(input : Nat, boolInput : Bool) : FancyResult {
-    if (input == 20) {
-      return #Ok "The input is equal to 20";
+  func checkToken(token : Text, boolInput : Bool) : FancyResult {
+    if (token == BTC or token == ICP) {
+      return #Ok "The token is valid";
     } else {
-      return #Err "The input is not equal to 20";
+      return #Err "The token is invalid";
     };
   };
 
-  public query func useCheckInput(input : Nat, boolInput : Bool) : async Text {
-    let operationResult = checkInput(input, boolInput);
+  public query func useCheckToken(token : Text, boolInput : Bool) : async Text {
+    let operationResult = checkToken(token, boolInput);
     switch (operationResult) {
       case (#Ok successMessage) {
         return successMessage;
